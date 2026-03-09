@@ -1297,17 +1297,21 @@
                 const sentences = text.split(/[.!?]+/).filter(s => s.trim());
                 const types = new Set();
 
+                console.log('Detecting sentence type for:', text);
+                console.log('Sentences after split:', sentences);
+
                 sentences.forEach(sentence => {
                     const trimmed = sentence.trim().toLowerCase();
+                    console.log('Processing sentence:', trimmed);
                     
                     // Check for exclamatory indicators FIRST (highest priority)
-                    // More specific exclamatory patterns
                     if (trimmed.includes('!') || 
                         trimmed.endsWith('!') ||
                         trimmed.match(/\b(amazing|excellent|fantastic|wonderful|great|awesome|brilliant|terrible|horrible|awful)\b/) ||
                         trimmed.match(/^(wow|oh)\s+\w+/) ||
                         trimmed.match(/^what\s+a\s+\w+/) ||
                         trimmed.match(/^how\s+(amazing|wonderful|terrible|awful|great|brilliant|fantastic|excellent)/)) {
+                        console.log('Detected as EXCLAMATORY');
                         types.add('exclamatory');
                     }
                     // Check for question indicators (second priority) - more specific
@@ -1315,19 +1319,24 @@
                         trimmed.endsWith('?') ||
                         trimmed.match(/^(what|where|when|why|who|which|whose|whom)\s+(is|are|was|were|do|does|did|can|could|will|would|shall|should)\b/) ||
                         trimmed.match(/^(are|is|am|do|does|did|can|could|would|should|will|shall)\s+\w+/)) {
+                        console.log('Detected as INTERROGATIVE');
                         types.add('interrogative');
                     }
                     // Check for imperative indicators (third priority)
                     else if (trimmed.match(/^(please|go|come|stop|start|run|walk|eat|sleep|work|play|study|read|write|speak|listen|look|watch|try|help|give|take|make|do|have|be|let|don't)/)) {
+                        console.log('Detected as IMPERATIVE');
                         types.add('imperative');
                     }
                     // Default to declarative
                     else {
+                        console.log('Detected as DECLARATIVE');
                         types.add('declarative');
                     }
                 });
 
-                return types.size > 0 ? Array.from(types) : ['declarative'];
+                const result = types.size > 0 ? Array.from(types) : ['declarative'];
+                console.log('Final sentence types:', result);
+                return result;
             }
 
             detectTense(text, language) {
