@@ -1300,8 +1300,28 @@
                 sentences.forEach(sentence => {
                     const trimmed = sentence.trim().toLowerCase();
                     
+                    // Check for exclamatory indicators FIRST (priority)
+                    if (trimmed.includes('!') || 
+                        trimmed.endsWith('!') ||
+                        trimmed.startsWith('what') || 
+                        trimmed.startsWith('how') || 
+                        trimmed.startsWith('wow') || 
+                        trimmed.startsWith('oh') ||
+                        trimmed.startsWith('amazing') ||
+                        trimmed.startsWith('excellent') ||
+                        trimmed.startsWith('fantastic') ||
+                        trimmed.startsWith('wonderful') ||
+                        trimmed.startsWith('great') ||
+                        trimmed.startsWith('awesome') ||
+                        trimmed.startsWith('brilliant') ||
+                        trimmed.startsWith('terrible') ||
+                        trimmed.startsWith('horrible') ||
+                        trimmed.startsWith('awful') ||
+                        trimmed.match(/\b(amazing|excellent|fantastic|wonderful|great|awesome|brilliant|terrible|horrible|awful)\b/)) {
+                        types.add('exclamatory');
+                    }
                     // Check for question indicators
-                    if (trimmed.includes('?') || 
+                    else if (trimmed.includes('?') || 
                         trimmed.startsWith('what') || 
                         trimmed.startsWith('where') || 
                         trimmed.startsWith('when') || 
@@ -1325,15 +1345,6 @@
                         trimmed.startsWith('shall') ||
                         trimmed.endsWith('?')) {
                         types.add('interrogative');
-                    }
-                    // Check for exclamatory indicators
-                    else if (trimmed.includes('!') || 
-                             trimmed.startsWith('what') || 
-                             trimmed.startsWith('how') || 
-                             trimmed.startsWith('wow') || 
-                             trimmed.startsWith('oh') ||
-                             trimmed.endsWith('!')) {
-                        types.add('exclamatory');
                     }
                     // Check for imperative indicators
                     else if (trimmed.match(/^(please|go|come|stop|start|run|walk|eat|sleep|work|play|study|read|write|speak|listen|look|watch|try|help|give|take|make|do|have|be|let|don't)/)) {
