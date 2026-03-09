@@ -1300,56 +1300,24 @@
                 sentences.forEach(sentence => {
                     const trimmed = sentence.trim().toLowerCase();
                     
-                    // Check for exclamatory indicators FIRST (priority)
+                    // Check for exclamatory indicators FIRST (highest priority)
                     if (trimmed.includes('!') || 
                         trimmed.endsWith('!') ||
-                        trimmed.startsWith('what') || 
-                        trimmed.startsWith('how') || 
-                        trimmed.startsWith('wow') || 
-                        trimmed.startsWith('oh') ||
-                        trimmed.startsWith('amazing') ||
-                        trimmed.startsWith('excellent') ||
-                        trimmed.startsWith('fantastic') ||
-                        trimmed.startsWith('wonderful') ||
-                        trimmed.startsWith('great') ||
-                        trimmed.startsWith('awesome') ||
-                        trimmed.startsWith('brilliant') ||
-                        trimmed.startsWith('terrible') ||
-                        trimmed.startsWith('horrible') ||
-                        trimmed.startsWith('awful') ||
-                        trimmed.match(/\b(amazing|excellent|fantastic|wonderful|great|awesome|brilliant|terrible|horrible|awful)\b/)) {
+                        trimmed.match(/\b(amazing|excellent|fantastic|wonderful|great|awesome|brilliant|terrible|horrible|awful)\b/) ||
+                        trimmed.match(/^(wow|oh|what|how)\s+\w+/)) {
                         types.add('exclamatory');
                     }
-                    // Check for question indicators
+                    // Check for question indicators (second priority)
                     else if (trimmed.includes('?') || 
-                        trimmed.startsWith('what') || 
-                        trimmed.startsWith('where') || 
-                        trimmed.startsWith('when') || 
-                        trimmed.startsWith('why') || 
-                        trimmed.startsWith('how') || 
-                        trimmed.startsWith('who') || 
-                        trimmed.startsWith('which') || 
-                        trimmed.startsWith('whose') || 
-                        trimmed.startsWith('whom') ||
-                        trimmed.startsWith('are') || 
-                        trimmed.startsWith('is') || 
-                        trimmed.startsWith('am') || 
-                        trimmed.startsWith('do') || 
-                        trimmed.startsWith('does') || 
-                        trimmed.startsWith('did') ||
-                        trimmed.startsWith('can') || 
-                        trimmed.startsWith('could') || 
-                        trimmed.startsWith('would') || 
-                        trimmed.startsWith('should') || 
-                        trimmed.startsWith('will') || 
-                        trimmed.startsWith('shall') ||
-                        trimmed.endsWith('?')) {
+                        trimmed.endsWith('?') ||
+                        trimmed.match(/^(what|where|when|why|how|who|which|whose|whom|are|is|am|do|does|did|can|could|would|should|will|shall)\b/)) {
                         types.add('interrogative');
                     }
-                    // Check for imperative indicators
+                    // Check for imperative indicators (third priority)
                     else if (trimmed.match(/^(please|go|come|stop|start|run|walk|eat|sleep|work|play|study|read|write|speak|listen|look|watch|try|help|give|take|make|do|have|be|let|don't)/)) {
                         types.add('imperative');
                     }
+                    // Default to declarative
                     else {
                         types.add('declarative');
                     }
