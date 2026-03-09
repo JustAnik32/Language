@@ -775,6 +775,9 @@
                             <option value="ur">Urdu</option>
                             <option value="fa">Persian</option>
                             <option value="sw">Swahili</option>
+                            <option value="af">Afrikaans</option>
+                            <option value="sa">Sanskrit</option>
+                            <option value="mi">Maori</option>
                         </select>
                     </div>
                     
@@ -824,6 +827,9 @@
                             <option value="ur">Urdu</option>
                             <option value="fa">Persian</option>
                             <option value="sw">Swahili</option>
+                            <option value="af">Afrikaans</option>
+                            <option value="sa">Sanskrit</option>
+                            <option value="mi">Maori</option>
                         </select>
                     </div>
                 </div>
@@ -978,7 +984,10 @@
                     'he': 'Hebrew',
                     'ur': 'Urdu',
                     'fa': 'Persian',
-                    'sw': 'Swahili'
+                    'sw': 'Swahili',
+                    'af': 'Afrikaans',
+                    'sa': 'Sanskrit',
+                    'mi': 'Maori'
                 };
                 
                 this.maxCharacters = 5000;
@@ -1960,7 +1969,10 @@
                     'no': /[æøå]/i,
                     'sv': /[åäö]/i,
                     'fi': /[äö]/i,
-                    'sw': /[ŋ]/i
+                    'sw': /[ŋ]/i,
+                    'af': /[ëïôû]/i,
+                    'sa': /[\u0900-\u097f]/i,
+                    'mi': /[āēīōū]/i
                 };
 
                 for (const [lang, pattern] of Object.entries(patterns)) {

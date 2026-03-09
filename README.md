@@ -5,7 +5,7 @@ A modern, responsive web application for translating text between multiple langu
 ## Features
 
 - **AI-Powered Translation**: Uses OpenRouter's LLM API for high-quality translations
-- **Multi-language Support**: Translate between 43 languages including English, Spanish, French, German, Chinese, Japanese, Arabic, Hindi, and many more
+- **Multi-language Support**: Translate between 46 languages including English, Spanish, French, German, Chinese, Japanese, Arabic, Hindi, and many more
 - **Auto Language Detection**: Automatically detects the source language
 - **Real-time Translation**: Fast translation with loading indicators
 - **Translation History**: Keeps track of your recent translations
@@ -15,7 +15,7 @@ A modern, responsive web application for translating text between multiple langu
 - **Modern UI**: Beautiful gradient design with smooth animations
 - **API Key Management**: Secure local storage of your OpenRouter API key
 
-## Supported Languages (43 Total)
+## Supported Languages (46 Total)
 
 ### Major World Languages
 - English, Spanish, French, German, Italian, Portuguese
@@ -25,6 +25,7 @@ A modern, responsive web application for translating text between multiple langu
 ### Indian Regional Languages
 - Telugu, Tamil, Bengali, Gujarati, Marathi
 - Punjabi, Malayalam, Kannada, Oriya, Assamese
+- Sanskrit (Classical)
 
 ### European Languages
 - Dutch, Swedish, Norwegian, Danish, Finnish
@@ -35,7 +36,10 @@ A modern, responsive web application for translating text between multiple langu
 - Vietnamese, Thai, Indonesian, Malay
 
 ### African Languages
-- Swahili
+- Swahili, Afrikaans
+
+### Pacific Languages
+- Maori
 
 ## Getting Started
 
