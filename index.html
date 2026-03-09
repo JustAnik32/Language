@@ -1294,10 +1294,15 @@
             }
 
             detectSentenceType(text) {
+                // First check the original text for punctuation before splitting
+                const hasExclamation = text.includes('!');
+                const hasQuestion = text.includes('?');
+                
                 const sentences = text.split(/[.!?]+/).filter(s => s.trim());
                 const types = new Set();
 
                 console.log('Detecting sentence type for:', text);
+                console.log('Has exclamation:', hasExclamation, 'Has question:', hasQuestion);
                 console.log('Sentences after split:', sentences);
 
                 sentences.forEach(sentence => {
@@ -1305,18 +1310,17 @@
                     console.log('Processing sentence:', trimmed);
                     
                     // Check for exclamatory indicators FIRST (highest priority)
-                    if (trimmed.includes('!') || 
-                        trimmed.endsWith('!') ||
+                    // Check both punctuation and content patterns
+                    if (hasExclamation ||
                         trimmed.match(/\b(amazing|excellent|fantastic|wonderful|great|awesome|brilliant|terrible|horrible|awful)\b/) ||
                         trimmed.match(/^(wow|oh)\s+\w+/) ||
                         trimmed.match(/^what\s+a\s+\w+/) ||
-                        trimmed.match(/^how\s+(amazing|wonderful|terrible|awful|great|brilliant|fantastic|excellent)/)) {
+                        trimmed.match(/^how\s+\w+/)) {
                         console.log('Detected as EXCLAMATORY');
                         types.add('exclamatory');
                     }
-                    // Check for question indicators (second priority) - more specific
-                    else if (trimmed.includes('?') || 
-                        trimmed.endsWith('?') ||
+                    // Check for question indicators (second priority)
+                    else if (hasQuestion ||
                         trimmed.match(/^(what|where|when|why|who|which|whose|whom)\s+(is|are|was|were|do|does|did|can|could|will|would|shall|should)\b/) ||
                         trimmed.match(/^(are|is|am|do|does|did|can|could|would|should|will|shall)\s+\w+/)) {
                         console.log('Detected as INTERROGATIVE');
